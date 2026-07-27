@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 
-import { AdminDashboard } from "./dashboard";
 import { AdminChatPanel } from "./chat-panel";
+import { AdminDashboard } from "./dashboard";
 
 export function AdminPanel() {
   const [activeTab, setActiveTab] = useState("home");
