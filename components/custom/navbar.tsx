@@ -78,6 +78,12 @@ export const Navbar = async () => {
             <Link href="/login">Iniciar sesión</Link>
           </Button>
         )}
+        <Button
+          className="py-1.5 px-2 h-fit font-normal text-white bg-emerald-600 hover:bg-emerald-700"
+          asChild
+        >
+          <Link href="/admin">Panel</Link>
+        </Button>
       </div>
     </>
   );
