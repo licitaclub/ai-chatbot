@@ -41,9 +41,9 @@ export default function Page() {
     <div className="flex h-screen w-screen items-center justify-center bg-background">
       <div className="w-full max-w-md overflow-hidden rounded-2xl flex flex-col gap-12">
         <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="text-xl font-semibold dark:text-zinc-50">Iniciar sesión</h3>
+          <h3 className="text-xl font-semibold dark:text-zinc-50">LicitaCLUB</h3>
           <p className="text-sm text-gray-500 dark:text-zinc-400">
-            Usa tu correo y contraseña para iniciar sesión
+            De +100 licitaciones procesadas al día, elegimos y presentamos las mejores para ti. Regístrate ahora
           </p>
         </div>
         <AuthForm action={handleSubmit} defaultEmail={email}>
