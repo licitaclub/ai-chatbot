@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react";
 import { Streamdown } from "streamdown";
+import { generateUUID } from "@/lib/utils";
 
 export function AdminChatPanel() {
   const {
@@ -15,6 +16,7 @@ export function AdminChatPanel() {
     id: "admin-chat",
     initialMessages: [
       {
+        id: generateUUID(),
         role: "assistant",
         content:
           "Bienvenido al panel de LicitaClub. 🎯\n\nPuedes consultar oportunidades de compras públicas chilenas directamente desde aquí. Por ejemplo:\n\n• Busca licitaciones de construcción\n• Muestra oportunidades por código\n• ¿Qué licitaciones están disponibles?",
