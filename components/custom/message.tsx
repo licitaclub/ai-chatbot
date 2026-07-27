@@ -6,15 +6,9 @@ import { ReactNode } from "react";
 import { Streamdown } from "streamdown";
 
 import { BotIcon, UserIcon } from "./icons";
+import { LicitacionDetail } from "./licitacion-detail";
+import { OrdenCompraDetail } from "./orden-compra-detail";
 import { PreviewAttachment } from "./preview-attachment";
-import { Weather } from "./weather";
-import { AuthorizePayment } from "../flights/authorize-payment";
-import { DisplayBoardingPass } from "../flights/boarding-pass";
-import { CreateReservation } from "../flights/create-reservation";
-import { FlightStatus } from "../flights/flight-status";
-import { ListFlights } from "../flights/list-flights";
-import { SelectSeats } from "../flights/select-seats";
-import { VerifyPayment } from "../flights/verify-payment";
 
 export const Message = ({
   chatId,
@@ -56,24 +50,10 @@ export const Message = ({
 
                 return (
                   <div key={toolCallId}>
-                    {toolName === "getWeather" ? (
-                      <Weather weatherAtLocation={result} />
-                    ) : toolName === "displayFlightStatus" ? (
-                      <FlightStatus flightStatus={result} />
-                    ) : toolName === "searchFlights" ? (
-                      <ListFlights chatId={chatId} results={result} />
-                    ) : toolName === "selectSeats" ? (
-                      <SelectSeats chatId={chatId} availability={result} />
-                    ) : toolName === "createReservation" ? (
-                      Object.keys(result).includes("error") ? null : (
-                        <CreateReservation reservation={result} />
-                      )
-                    ) : toolName === "authorizePayment" ? (
-                      <AuthorizePayment intent={result} />
-                    ) : toolName === "displayBoardingPass" ? (
-                      <DisplayBoardingPass boardingPass={result} />
-                    ) : toolName === "verifyPayment" ? (
-                      <VerifyPayment result={result} />
+                    {toolName === "searchLicitacion" ? (
+                      <LicitacionDetail data={result} />
+                    ) : toolName === "searchOrdenCompra" ? (
+                      <OrdenCompraDetail data={result} />
                     ) : (
                       <div>{JSON.stringify(result, null, 2)}</div>
                     )}
@@ -82,20 +62,14 @@ export const Message = ({
               } else {
                 return (
                   <div key={toolCallId} className="skeleton">
-                    {toolName === "getWeather" ? (
-                      <Weather />
-                    ) : toolName === "displayFlightStatus" ? (
-                      <FlightStatus />
-                    ) : toolName === "searchFlights" ? (
-                      <ListFlights chatId={chatId} />
-                    ) : toolName === "selectSeats" ? (
-                      <SelectSeats chatId={chatId} />
-                    ) : toolName === "createReservation" ? (
-                      <CreateReservation />
-                    ) : toolName === "authorizePayment" ? (
-                      <AuthorizePayment />
-                    ) : toolName === "displayBoardingPass" ? (
-                      <DisplayBoardingPass />
+                    {toolName === "searchLicitacion" ? (
+                      <div className="w-[300px] h-[100px] rounded-lg bg-muted animate-pulse flex items-center justify-center text-xs text-muted-foreground">
+                        Buscando licitación...
+                      </div>
+                    ) : toolName === "searchOrdenCompra" ? (
+                      <div className="w-[300px] h-[100px] rounded-lg bg-muted animate-pulse flex items-center justify-center text-xs text-muted-foreground">
+                        Buscando orden de compra...
+                      </div>
                     ) : null}
                   </div>
                 );

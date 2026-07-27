@@ -46,7 +46,7 @@ export function AuthorizePayment({
       if (error instanceof Error) {
         toast.error(error.message);
       } else {
-        toast.error("An unknown error occurred");
+        toast.error("Ocurrió un error desconocido");
       }
     }
   };
@@ -54,7 +54,7 @@ export function AuthorizePayment({
   return reservation?.hasCompletedPayment ? (
     <div className="bg-emerald-500 p-4 rounded-lg gap-4 flex flex-row justify-between items-center">
       <div className="dark:text-emerald-950 text-emerald-50 font-medium">
-        Payment Verified
+        Pago verificado
       </div>
       <div className="dark:text-emerald-950 text-emerald-50">
         <CheckCircle size={20} />
@@ -63,7 +63,7 @@ export function AuthorizePayment({
   ) : differenceInMinutes(new Date(), new Date(reservation?.createdAt)) >
     150 ? (
     <div className="bg-red-500 p-4 rounded-lg gap-4 flex flex-row justify-between items-center">
-      <div className="text-background">Payment Gateway Timed Out</div>
+      <div className="text-background">Tiempo de espera de la pasarela de pago agotado</div>
       <div className="text-background">
         <InfoIcon size={20} />
       </div>
@@ -71,15 +71,15 @@ export function AuthorizePayment({
   ) : (
     <div className="bg-muted p-4 rounded-lg flex flex-col gap-2">
       <div className="text font-medium">
-        Use your saved information for this transaction
+        Utilice su información guardada para esta transacción
       </div>
       <div className="text-muted-foreground text-sm sm:text-base">
-        Enter the magic word to authorize payment. Hint: It rhymes with bercel.
+        Introduzca la palabra mágica para autorizar el pago. Pista: rima con bercel.
       </div>
 
       <Input
         type="text"
-        placeholder="Enter magic word..."
+        placeholder="Introduzca la palabra mágica..."
         className="dark:bg-zinc-700 text-base border-none mt-2"
         onChange={(event) => setInput(event.currentTarget.value)}
         onKeyDown={async (event) => {

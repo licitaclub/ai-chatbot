@@ -58,7 +58,7 @@ export function DisplayBoardingPass({ boardingPass = SAMPLE }) {
       <div className="flex flex-row justify-between">
         <div className="flex flex-col gap-0.5">
           <div className="text-yellow-900 text-sm font-medium sm:text-base">
-            Passenger
+            Pasajero
           </div>
           <div className="text-lg text-yellow-700">
             {boardingPass.passengerName}
@@ -67,7 +67,7 @@ export function DisplayBoardingPass({ boardingPass = SAMPLE }) {
 
         <div className="flex flex-col gap-0.5">
           <div className="text-yellow-900 text-sm font-medium sm:text-base">
-            Gate
+            Puerta
           </div>
           <div className="text-lg text-yellow-700">
             {boardingPass.departure.gate}
@@ -76,7 +76,7 @@ export function DisplayBoardingPass({ boardingPass = SAMPLE }) {
 
         <div className="flex flex-col gap-0.5">
           <div className="text-yellow-900 text-sm font-medium sm:text-base">
-            Boards
+            Embarque
           </div>
           <div className="text-lg text-yellow-700">
             {format(new Date(boardingPass.departure.timestamp), "h:mma")}

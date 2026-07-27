@@ -22,7 +22,7 @@ export function SubmitButton({ children }: { children: React.ReactNode }) {
         </span>
       )}
       <span aria-live="polite" className="sr-only" role="status">
-        {pending ? "Loading" : "Submit form"}
+        {pending ? "Cargando..." : "Enviar formulario"}
       </span>
     </Button>
   );

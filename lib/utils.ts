@@ -131,7 +131,7 @@ export function getTitleFromChat(chat: Chat) {
   const firstMessage = messages[0];
 
   if (!firstMessage) {
-    return "Untitled";
+    return "Sin título";
   }
 
   return firstMessage.content;

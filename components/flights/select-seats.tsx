@@ -97,7 +97,7 @@ export function SelectSeats({
                   onClick={() => {
                     append({
                       role: "user",
-                      content: `I'd like to go with seat ${seat.seatNumber}`,
+                      content: `Me gustaría elegir el asiento ${seat.seatNumber}`,
                     });
                   }}
                   className={cx(
@@ -129,13 +129,13 @@ export function SelectSeats({
         <div className="flex flex-row items-center gap-2">
           <div className="size-4 bg-blue-500 rounded-sm" />
           <div className="text text-muted-foreground font-medium text-sm">
-            Available
+            Disponible
           </div>
         </div>
         <div className="flex flex-row items-center gap-2">
           <div className="size-4 bg-gray-500 rounded-sm" />
           <div className="text text-muted-foreground font-medium text-sm">
-            Unavailable
+            No disponible
           </div>
         </div>
       </div>

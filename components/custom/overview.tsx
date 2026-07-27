@@ -20,26 +20,25 @@ export const Overview = () => {
           <MessageIcon />
         </p>
         <p>
-          This is an open source Chatbot template powered by the Google Gemini
-          model built with Next.js and the AI SDK by Vercel. It uses the{" "}
+          Esta es una plantilla de Chatbot de código abierto de LicitaCLUB impulsada por el modelo Google Gemini, construida con Next.js y el AI SDK de Vercel. Utiliza la función{" "}
           <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
             streamText
           </code>{" "}
-          function in the server and the{" "}
+          en el servidor y el hook{" "}
           <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
             useChat
           </code>{" "}
-          hook on the client to create a seamless chat experience.
+          en el cliente para ofrecer una experiencia de chat fluida.
         </p>
         <p>
           {" "}
-          You can learn more about the AI SDK by visiting the{" "}
+          Puedes aprender más sobre el AI SDK visitando la{" "}
           <Link
             className="text-blue-500 dark:text-blue-400"
             href="https://sdk.vercel.ai/docs"
             target="_blank"
           >
-            Docs
+            documentación
           </Link>
           .
         </p>

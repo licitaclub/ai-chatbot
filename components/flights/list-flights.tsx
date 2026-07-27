@@ -95,7 +95,7 @@ export function ListFlights({
           onClick={() => {
             append({
               role: "user",
-              content: `I would like to book the ${flight.airlines} one!`,
+              content: `¡Me gustaría reservar el de ${flight.airlines.join(" / ")}!`,
             });
           }}
         >
@@ -113,7 +113,7 @@ export function ListFlights({
               <div>{flight.airlines.join(", ")}</div>
             </div>
             <div className="text sm:hidden text-xs sm:text-sm text-muted-foreground flex flex-row gap-2">
-              {flight.airlines.length} stops
+              {flight.numberOfStops === 0 ? "Directo" : `${flight.numberOfStops} ${flight.numberOfStops === 1 ? "escala" : "escalas"}`}
             </div>
           </div>
 
@@ -124,7 +124,7 @@ export function ListFlights({
                   new Date(flight.arrival.timestamp),
                   new Date(flight.departure.timestamp),
                 )}{" "}
-                hr
+                h
               </div>
             </div>
             <div className="text-xs sm:text-sm text-muted-foreground flex flex-row">
@@ -141,7 +141,7 @@ export function ListFlights({
               </div>
             </div>
             <div className="text-xs sm:text-sm text-muted-foreground flex flex-row">
-              Round Trip
+              Ida y vuelta
             </div>
           </div>
         </div>
