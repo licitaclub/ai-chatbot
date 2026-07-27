@@ -185,7 +185,7 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
                   <span className="font-semibold">{value}</span>
                 </div>
                 <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${(Number(value) / max) * 100}%`, backgroundColor: color }} />
+                  <div className="h-full rounded-full transition-all" style={{ width: `${(Number(value) / max) * 100}%`, backgroundColor: color as string }} />
                 </div>
               </div>
             );
