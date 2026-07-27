@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-import { LogoGoogle, MessageIcon, VercelIcon } from "./icons";
+import { MessageIcon } from "./icons";
 
 export const Overview = () => {
   return (
@@ -15,32 +15,22 @@ export const Overview = () => {
     >
       <div className="border-none bg-muted/50 rounded-2xl p-6 flex flex-col gap-4 text-zinc-500 text-sm dark:text-zinc-400 dark:border-zinc-700">
         <p className="flex flex-row justify-center gap-4 items-center text-zinc-900 dark:text-zinc-50">
-          <VercelIcon />
-          <span>+</span>
           <MessageIcon />
         </p>
         <p>
-          Esta es una plantilla de Chatbot de código abierto de LicitaCLUB impulsada por el modelo Google Gemini, construida con Next.js y el AI SDK de Vercel. Utiliza la función{" "}
+          LicitaCLUB es un chatbot especializado en Mercado Público de Chile.
+          Utiliza{" "}
           <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
             streamText
           </code>{" "}
-          en el servidor y el hook{" "}
-          <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
-            useChat
-          </code>{" "}
-          en el cliente para ofrecer una experiencia de chat fluida.
+          en el servidor y la IA de Gemini para buscar licitaciones y órdenes
+          de compra con datos en tiempo real.
         </p>
         <p>
-          {" "}
-          Puedes aprender más sobre el AI SDK visitando la{" "}
-          <Link
-            className="text-blue-500 dark:text-blue-400"
-            href="https://sdk.vercel.ai/docs"
-            target="_blank"
-          >
-            documentación
-          </Link>
-          .
+          Automatice sus respuestas a Compra Ágil y licitaciones públicas.
+          Cuatro agentes AI leen el pliego, redactan la propuesta, verifican
+          cumplimiento y la dejan lista para presentar en ChileCompra — en
+          minutos, no en días.
         </p>
       </div>
     </motion.div>
