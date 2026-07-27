@@ -19,12 +19,8 @@ export const Overview = () => {
         </p>
         <p>
           LicitaCLUB es un chatbot especializado en Mercado Público de Chile.
-          Utiliza{" "}
-          <code className="rounded-sm bg-muted-foreground/15 px-1.5 py-0.5">
-            streamText
-          </code>{" "}
-          en el servidor y la IA de Gemini para buscar licitaciones y órdenes
-          de compra con datos en tiempo real.
+          Utiliza la IA de Gemini para buscar licitaciones y órdenes de compra
+          con datos en tiempo real.
         </p>
         <p>
           Automatice sus respuestas a Compra Ágil y licitaciones públicas.
