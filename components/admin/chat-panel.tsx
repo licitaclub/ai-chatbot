@@ -2,6 +2,7 @@
 
 import { useChat } from "ai/react";
 import { Streamdown } from "streamdown";
+
 import { generateUUID } from "@/lib/utils";
 
 export function AdminChatPanel() {
