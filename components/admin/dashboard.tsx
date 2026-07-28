@@ -91,18 +91,25 @@ function stTag(st: string): string {
   return map[st] || "bg-slate-100 text-slate-500";
 }
 
+function isArray(val: unknown): val is unknown[] {
+  return Array.isArray(val);
+}
+
 export function AdminDashboard({ activeTab }: { activeTab: string }) {
   const [stats, setStats] = useState<Stats | null>(null);
   const [matches, setMatches] = useState<Match[]>([]);
   const [tenders, setTenders] = useState<Tender[]>([]);
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     loadAll();
   }, [activeTab]);
 
   async function loadAll() {
+    setLoading(true);
+    setError(null);
     try {
       const [sRes, mRes, tRes, suRes] = await Promise.all([
         fetch("/api/admin/stats"),
@@ -110,12 +117,24 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
         fetch("/api/admin/demandas?limit=50"),
         fetch("/api/admin/suppliers?limit=50"),
       ]);
-      setStats(await sRes.json());
-      setMatches(await mRes.json());
-      setTenders(await tRes.json());
-      setSuppliers(await suRes.json());
+      const sData = await sRes.json();
+      const mData = await mRes.json();
+      const tData = await tRes.json();
+      const suData = await suRes.json();
+
+      if (!sRes.ok || !isArray(sData)) throw new Error("Error cargando estadísticas");
+      if (!mRes.ok || !isArray(mData)) throw new Error("Error cargando oportunidades");
+      if (!tRes.ok || !isArray(tData)) throw new Error("Error cargando licitaciones");
+      if (!suRes.ok || !isArray(suData)) throw new Error("Error cargando proveedores");
+
+      setStats(sData as Stats);
+      setMatches(mData as Match[]);
+      setTenders(tData as Tender[]);
+      setSuppliers(suData as Supplier[]);
     } catch (e) {
-      console.error("Failed to load admin data", e);
+      const msg = e instanceof Error ? e.message : "Error desconocido";
+      setError(msg);
+      console.error("Admin data load error:", msg);
     } finally {
       setLoading(false);
     }
@@ -140,6 +159,21 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
     return (
       <div className="flex items-center justify-center py-20">
         <div className="text-slate-400 text-sm">Cargando panel...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
+        <h3 className="text-sm font-semibold text-amber-800 mb-2">
+          ⚠ Panel de administración no configurado
+        </h3>
+        <p className="text-sm text-amber-700">
+          Las credenciales de Supabase del panel de administración no están
+          configuradas. Agrega <code className="bg-amber-100 px-1 rounded">ADMIN_SUPABASE_URL</code> y{" "}
+          <code className="bg-amber-100 px-1 rounded">ADMIN_SUPABASE_KEY</code> a las variables de entorno.
+        </p>
       </div>
     );
   }

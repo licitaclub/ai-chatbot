@@ -1,7 +1,5 @@
-import { Chat } from "@/components/custom/chat";
-import { generateUUID } from "@/lib/utils";
+import { AdminPanel } from "@/components/admin/admin-panel";
 
 export default async function Page() {
-  const id = generateUUID();
-  return <Chat key={id} id={id} initialMessages={[]} />;
+  return <AdminPanel />;
 }
