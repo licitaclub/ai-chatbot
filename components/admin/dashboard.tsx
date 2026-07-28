@@ -127,10 +127,10 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
       if (!tRes.ok || !isArray(tData)) throw new Error("Error cargando licitaciones");
       if (!suRes.ok || !isArray(suData)) throw new Error("Error cargando proveedores");
 
-      setStats(sData as Stats);
-      setMatches(mData as Match[]);
-      setTenders(tData as Tender[]);
-      setSuppliers(suData as Supplier[]);
+      setStats(sData as unknown as Stats);
+      setMatches(mData as unknown as Match[]);
+      setTenders(tData as unknown as Tender[]);
+      setSuppliers(suData as unknown as Supplier[]);
     } catch (e) {
       const msg = e instanceof Error ? e.message : "Error desconocido";
       setError(msg);
