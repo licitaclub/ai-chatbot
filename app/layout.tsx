@@ -8,7 +8,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "LicitaCLUB",
-  description: "Chatbot especializado en Mercado Público de Chile impulsado por IA Gemini.",
+  description: "Plataforma de inteligencia para empresas que participan en Mercado Público y Compra Ágil en Chile.",
 };
 
 export default async function RootLayout({
