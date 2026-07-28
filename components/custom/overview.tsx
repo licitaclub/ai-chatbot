@@ -46,10 +46,10 @@ export const Overview = () => {
           Comienza escribiendo una pregunta en el chat, por ejemplo:
         </p>
         <ul className="list-disc pl-5 space-y-1 text-xs text-zinc-400 dark:text-zinc-500">
-          <li>"Busca Compras Ágiles de construcción."</li>
-          <li>"Muéstrame licitaciones de servicios informáticos."</li>
-          <li>"Analiza esta licitación."</li>
-          <li>"¿Qué oportunidades cierran esta semana?"</li>
+          <li>Busca Compras Ágiles de construcción.</li>
+          <li>Muéstrame licitaciones de servicios informáticos.</li>
+          <li>Analiza esta licitación.</li>
+          <li>Qué oportunidades cierran esta semana?</li>
         </ul>
       </div>
     </motion.div>
