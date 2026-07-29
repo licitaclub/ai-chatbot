@@ -8,8 +8,10 @@ config({
 });
 
 const runMigrate = async () => {
-  if (!process.env.POSTGRES_URL) {
-    throw new Error("POSTGRES_URL is not defined");
+  const postgresUrl = process.env.POSTGRES_URL;
+  if (!postgresUrl) {
+    console.warn("⚠ POSTGRES_URL is not defined — skipping migrations");
+    process.exit(0);
   }
 
   const connection = postgres(process.env.POSTGRES_URL, { max: 1 });
