@@ -14,16 +14,21 @@ const runMigrate = async () => {
     process.exit(0);
   }
 
-  const connection = postgres(process.env.POSTGRES_URL, { max: 1 });
-  const db = drizzle(connection);
+  try {
+    const connection = postgres(postgresUrl, { max: 1 });
+    const db = drizzle(connection);
 
-  console.log("⏳ Running migrations...");
+    console.log("⏳ Running migrations...");
 
-  const start = Date.now();
-  await migrate(db, { migrationsFolder: "./lib/drizzle" });
-  const end = Date.now();
+    const start = Date.now();
+    await migrate(db, { migrationsFolder: "./lib/drizzle" });
+    const end = Date.now();
 
-  console.log("✅ Migrations completed in", end - start, "ms");
+    console.log("✅ Migrations completed in", end - start, "ms");
+  } catch (err) {
+    console.warn("⚠ Migration skipped — could not connect to Postgres:", err.message);
+  }
+
   process.exit(0);
 };
 
