@@ -15,6 +15,12 @@ export const authConfig = {
       let isOnChat = nextUrl.pathname.startsWith("/");
       let isOnRegister = nextUrl.pathname.startsWith("/register");
       let isOnLogin = nextUrl.pathname.startsWith("/login");
+      let isOnAdminApi = nextUrl.pathname.startsWith("/api/admin");
+
+      // Admin API routes use ADMIN_SUPABASE_KEY directly — skip user auth
+      if (isOnAdminApi) {
+        return true;
+      }
 
       if (isLoggedIn && (isOnLogin || isOnRegister)) {
         return Response.redirect(new URL("/", nextUrl));
