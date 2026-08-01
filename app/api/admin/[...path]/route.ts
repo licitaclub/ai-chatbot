@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const ADMIN_SUPABASE_URL = process.env.ADMIN_SUPABASE_URL!;
-const ADMIN_SUPABASE_KEY = process.env.ADMIN_SUPABASE_KEY!;
+const ADMIN_SUPABASE_URL = process.env.ADMIN_SUPABASE_URL;
+const ADMIN_SUPABASE_KEY = process.env.ADMIN_SUPABASE_KEY;
 
 const HEADERS = {
-  "apikey": ADMIN_SUPABASE_KEY,
-  "Authorization": `Bearer ${ADMIN_SUPABASE_KEY}`,
+  "apikey": ADMIN_SUPABASE_KEY ?? "",
+  "Authorization": `Bearer ${ADMIN_SUPABASE_KEY ?? ""}`,
   "Content-Type": "application/json",
   "Prefer": "return=representation",
 };
@@ -34,6 +34,14 @@ export async function GET(
     });
 
     const data = await res.json();
+
+    if (res.status === 404 && data?.code === "PGRST205") {
+      return NextResponse.json(
+        { error: "Table not found", code: "TABLE_NOT_FOUND" },
+        { status: 404 },
+      );
+    }
+
     return NextResponse.json(data, { status: res.status });
   } catch (error) {
     return NextResponse.json(
@@ -69,6 +77,14 @@ export async function POST(
     });
 
     const data = await res.json();
+
+    if (res.status === 404 && data?.code === "PGRST205") {
+      return NextResponse.json(
+        { error: "Table not found", code: "TABLE_NOT_FOUND" },
+        { status: 404 },
+      );
+    }
+
     return NextResponse.json(data, { status: res.status });
   } catch (error) {
     return NextResponse.json(

@@ -122,6 +122,11 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
       const tData = await tRes.json();
       const suData = await suRes.json();
 
+      if (sRes.status === 404 && sData?.code === "TABLE_NOT_FOUND") throw new Error("TABLE_NOT_FOUND");
+      if (mRes.status === 404 && mData?.code === "TABLE_NOT_FOUND") throw new Error("TABLE_NOT_FOUND");
+      if (tRes.status === 404 && tData?.code === "TABLE_NOT_FOUND") throw new Error("TABLE_NOT_FOUND");
+      if (suRes.status === 404 && suData?.code === "TABLE_NOT_FOUND") throw new Error("TABLE_NOT_FOUND");
+
       if (!sRes.ok || !isArray(sData)) throw new Error("Error cargando estadísticas");
       if (!mRes.ok || !isArray(mData)) throw new Error("Error cargando oportunidades");
       if (!tRes.ok || !isArray(tData)) throw new Error("Error cargando licitaciones");
@@ -164,15 +169,16 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
   }
 
   if (error) {
+    const isTableNotFound = error === "TABLE_NOT_FOUND";
     return (
       <div className="rounded-xl border border-amber-200 bg-amber-50 p-6">
         <h3 className="text-sm font-semibold text-amber-800 mb-2">
-          ⚠ Panel de administración no configurado
+          {isTableNotFound ? "⚠ Tablas del panel no creadas" : "⚠ Panel de administración no configurado"}
         </h3>
         <p className="text-sm text-amber-700">
-          Las credenciales de Supabase del panel de administración no están
-          configuradas. Agrega <code className="bg-amber-100 px-1 rounded">ADMIN_SUPABASE_URL</code> y{" "}
-          <code className="bg-amber-100 px-1 rounded">ADMIN_SUPABASE_KEY</code> a las variables de entorno.
+          {isTableNotFound
+            ? "Las tablas necesarias para el panel de administración no existen en la base de datos. Ejecuta las migraciones para crearlas."
+            : "Las credenciales de Supabase del panel de administración no están configuradas. Agrega <code className=\"bg-amber-100 px-1 rounded\">ADMIN_SUPABASE_URL</code> y <code className=\"bg-amber-100 px-1 rounded\">ADMIN_SUPABASE_KEY</code> a las variables de entorno."}
         </p>
       </div>
     );
