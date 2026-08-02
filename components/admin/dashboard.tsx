@@ -113,7 +113,7 @@ export function AdminDashboard({ activeTab }: { activeTab: string }) {
     try {
       const [sRes, mRes, tRes, suRes] = await Promise.all([
         fetch("/api/admin/stats"),
-        fetch("/api/admin/matches?limit=50&status=pending"),
+        fetch("/api/admin/matches?limit=50&status=eq.pending"),
         fetch("/api/admin/demandas?limit=50"),
         fetch("/api/admin/suppliers?limit=50"),
       ]);
