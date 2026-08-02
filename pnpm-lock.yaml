@@ -15,8 +15,8 @@ importers:
         specifier: ^5.0.38
         version: 5.0.38(supports-color@7.2.0)(zod@3.25.76)
       '@ai-sdk/groq':
-        specifier: ^4.0.19
-        version: 4.0.19(zod@3.25.76)
+        specifier: ^0.0.1
+        version: 0.0.1(zod@3.25.76)
       '@radix-ui/react-alert-dialog':
         specifier: ^1.1.2
         version: 1.1.15(@types/react-dom@19.2.3(@types/react@19.2.7))(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
@@ -207,11 +207,11 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/groq@4.0.19':
-    resolution: {integrity: sha512-XKmmZVLeMfT/kTl1pxBZCKS6cRDt7gLa4QTyJlBB+OzSqesuWeN6l8SbzaaSKYN+1HA+QHFCCooSM0TnPXjO6w==}
-    engines: {node: '>=22'}
+  '@ai-sdk/groq@0.0.1':
+    resolution: {integrity: sha512-M8XHUovs2UqOx6xlhABXXCGlzbgeErSyIwvH1LQeDl3Z2CbSSgvttc0k6irm4J7ViuULE5XcIDQurXijIePWqQ==}
+    engines: {node: '>=18'}
     peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
+      zod: ^3.0.0
 
   '@ai-sdk/openai-compatible@3.0.20':
     resolution: {integrity: sha512-RsPg+HilsKc/d+jy4zItG7v7RJQm+caUu+iU0a5bx3eyyX5tkayMGDRklXMMMAPa4l34luzQwT3t4cmeHfdiWw==}
@@ -4730,10 +4730,10 @@ snapshots:
       '@ai-sdk/provider-utils': 5.0.18(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/groq@4.0.19(zod@3.25.76)':
+  '@ai-sdk/groq@0.0.1(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 4.0.4
-      '@ai-sdk/provider-utils': 5.0.18(zod@3.25.76)
+      '@ai-sdk/provider': 0.0.24
+      '@ai-sdk/provider-utils': 1.0.20(zod@3.25.76)
       zod: 3.25.76
 
   '@ai-sdk/openai-compatible@3.0.20(zod@3.25.76)':
