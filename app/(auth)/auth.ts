@@ -1,8 +1,9 @@
 import { compare } from "bcrypt-ts";
 import NextAuth, { User, Session } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import Google from "next-auth/providers/google";
 
-import { getUser } from "@/db/queries";
+import { getUser, createUser } from "@/db/queries";
 
 import { authConfig } from "./auth.config";
 
@@ -18,6 +19,10 @@ export const {
 } = NextAuth({
   ...authConfig,
   providers: [
+    Google({
+      clientId: process.env.AUTH_GOOGLE_ID!,
+      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
+    }),
     Credentials({
       credentials: {},
       async authorize({ email, password }: any) {
@@ -29,11 +34,19 @@ export const {
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id;
       }
-
+      // Auto-create user on first Google sign-in
+      if (account?.provider === "google" && token.email) {
+        const existing = await getUser(token.email as string);
+        if (existing.length === 0) {
+          await createUser(token.email as string, crypto.randomUUID());
+        }
+        const [dbUser] = await getUser(token.email as string);
+        if (dbUser) token.id = dbUser.id;
+      }
       return token;
     },
     async session({
